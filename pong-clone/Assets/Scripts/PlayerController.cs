@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Awake()
     {
-        moveVector = new Vector2(0, GameManager._Instance.MoveSpeed);
+        moveVector = new Vector2(0, GameManager.instance.MoveSpeed);
         map = new InputMap();
         
         rb = GetComponent<Rigidbody2D>();
