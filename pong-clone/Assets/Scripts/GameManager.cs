@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
    public static GameManager instance = null;
-   public delegate void SystemCallbacks();
-   private SystemCallbacks systemCallbacks;
+   public delegate void ScoreCallback(Rigidbody2D rb);
+   public ScoreCallback scoreCallbacks;
    public GameObject puck;
    private IPuck puckBase;
    private bool hasStarted;
-   private float roundTimer = 2f;
+   private float roundTimer = 1000f;
    public Vector2 puckSpeed;
+   private TMP_Text leftScoreText;
+   private TMP_Text rightScoreText;
 
    [Range(0, 50)]
    public int MoveSpeed = 10;
@@ -30,30 +33,24 @@ public class GameManager : MonoBehaviour
       
       #region delegate callbacks
 
-     /*
-     systemCallbacks += OnScoreLeft();
-     systemCallbacks += OnScoreRight();
-     systemCallbacks += OnBounceWall();
-     systemCallbacks += OnBouncePaddle();
+      scoreCallbacks += OnScore;
+     // systemCallbacks += OnBounceWall();
+    // systemCallbacks += OnBouncePaddle();
 
-     SystemCallbacks OnScoreLeft()
+     void OnScore(Rigidbody2D rb)
      {
-        throw new NotImplementedException();
-     }
-      SystemCallbacks OnScoreRight()
-     {
-        throw new NotImplementedException();
+        AudioManager.instance.Score();
      }
 
-     SystemCallbacks OnBounceWall()
-     {
-        throw new NotImplementedException();
-     }
+     //SystemCallbacks OnBounceWall()
+    //{
+    //   throw new NotImplementedException();
+    //}
 
-     SystemCallbacks OnBouncePaddle()
-     {
-        throw new NotImplementedException();
-     }*/
+    //SystemCallbacks OnBouncePaddle()
+    //{
+    //   throw new NotImplementedException();
+    //}
       
       #endregion
       
@@ -63,18 +60,17 @@ public class GameManager : MonoBehaviour
    {
       if(SceneManager.GetActiveScene().buildIndex == (int)Level.MainGame)
       {
-         roundTimer -= Time.time;
          if (roundTimer > 0 && !hasStarted)
          {
             roundTimer -= Time.time;
-            Debug.Log("The time is " + roundTimer);
          }
 
          else if (!hasStarted)
          {
-            Instantiate(puck, Vector2.zero, Quaternion.identity);
+            GameObject puckHandler = Instantiate(puck, Vector2.zero, Quaternion.identity);
             hasStarted = true;
-            puckBase = puck.GetComponent<IPuck>();
+            puckBase = puckHandler.GetComponent<IPuck>();
+            puckBase.Init();
             puckBase.Punch();
 
          }

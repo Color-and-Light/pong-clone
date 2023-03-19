@@ -9,31 +9,25 @@ public class DefaultPuck : MonoBehaviour, IPuck
 {
    private Rigidbody2D rb;
  
-   private void Awake()
+   public void Init()
    {
       rb = GetComponent<Rigidbody2D>();
    }
 
    public void Punch()
    {
-      float direction = Random.Range(0, 1);
+      float direction = Random.Range(0f, 1f);
       if (direction >= 0.5)
       {
-         rb.velocity += GameManager.instance.puckSpeed;
+         rb.velocity = GameManager.instance.puckSpeed;
       }
-      else rb.velocity += Vector2.left * GameManager.instance.puckSpeed;
+      else
+      {
+         rb.velocity = Vector2.left * GameManager.instance.puckSpeed;
+      }
    }
    private void OnTriggerEnter2D(Collider2D col)
    {
-      if (col.CompareTag("LeftScoreBox"))
-      {
-         Debug.Log("Score Left !");
-      }
-
-      if (col.CompareTag("RightScoreBox"))
-      {
-         Debug.Log("Score Right!");
-
-      }
+      GameManager.instance.scoreCallbacks.Invoke(col.attachedRigidbody);
    }
 }

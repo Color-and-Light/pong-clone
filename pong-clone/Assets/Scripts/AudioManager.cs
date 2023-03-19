@@ -20,4 +20,9 @@ public class AudioManager : MonoBehaviour
       
       DontDestroyOnLoad(this);
    }
+
+   public void Score()
+   {
+      //play score sound
+   }
 }
