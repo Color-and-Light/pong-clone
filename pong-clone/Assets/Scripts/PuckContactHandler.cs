@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PuckContactHandler : MonoBehaviour
@@ -9,7 +10,7 @@ public class PuckContactHandler : MonoBehaviour
     {
         if (col.CompareTag("RightScoreBox")) //string comparison is terrible, but only used twice
         {
-            GameManager.instance.
+            GameManager.instance.scoreCallbacks.Invoke(col.gameObject);
         }
     }
 

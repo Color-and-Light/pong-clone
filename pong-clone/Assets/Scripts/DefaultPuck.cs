@@ -23,11 +23,29 @@ public class DefaultPuck : MonoBehaviour, IPuck
       }
       else
       {
-         rb.velocity = Vector2.left * GameManager.instance.puckSpeed;
+         rb.velocity = new Vector2(-1, 1) * GameManager.instance.puckSpeed;
       }
    }
    private void OnTriggerEnter2D(Collider2D col)
    {
-      GameManager.instance.scoreCallbacks.Invoke(col.attachedRigidbody);
+      GameManager.instance.scoreCallbacks.Invoke(col.gameObject);
+      Destroy(this.gameObject);
+   }
+
+   private void OnCollisionEnter2D(Collision2D col)
+   {
+      if (col.gameObject.GetComponent<PlayerController>())
+      {
+         Vector2 normalized = Vector2.Reflect(rb.velocity, col.contacts[0].normal).normalized;
+         rb.velocity = normalized * GameManager.instance.puckSpeed;
+      }
+      else
+      {
+         Vector2 cache = Vector2.Reflect(rb.velocity, col.contacts[0].normal).normalized;
+         if (Vector2.Angle(cache, ) <= 20)
+         {
+            
+         }
+      }
    }
 }

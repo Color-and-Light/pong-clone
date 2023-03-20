@@ -473,7 +473,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &972115513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puck: {fileID: 8666958596064797095, guid: 304e8f1945d362c41a1e23327b40184c, type: 3}
-  puckSpeed: {x: 5, y: 5}
+  puckSpeed: {x: 10, y: 5}
   MoveSpeed: 10
 --- !u!4 &1908675880
 Transform:

@@ -47,5 +47,11 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.GetComponent<IPuck>() != null)
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
 }

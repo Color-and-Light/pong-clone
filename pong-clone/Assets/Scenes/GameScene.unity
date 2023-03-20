@@ -246,8 +246,8 @@ GameObject:
   - component: {fileID: 87777004}
   - component: {fileID: 87777003}
   m_Layer: 5
-  m_Name: RightScoreText
-  m_TagString: Untagged
+  m_Name: LeftScoreText
+  m_TagString: LeftScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,7 +265,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1618655452}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 255078256}
   m_Layer: 0
   m_Name: RightPaddle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -526,6 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 487579337}
   - component: {fileID: 487579336}
+  - component: {fileID: 487579338}
   m_Layer: 0
   m_Name: LeftScoreBox
   m_TagString: LeftScoreBox
@@ -574,6 +575,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487579338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487579335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a079fb543117ea488fec41ff3705394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreField: {fileID: 87777001}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,7 +776,7 @@ GameObject:
   - component: {fileID: 1010150742}
   m_Layer: 0
   m_Name: LeftPaddle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,6 +1074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1125599343}
   - component: {fileID: 1125599344}
+  - component: {fileID: 1125599345}
   m_Layer: 0
   m_Name: RightScoreBox
   m_TagString: RightScoreBox
@@ -1108,6 +1123,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1125599345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1125599342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a079fb543117ea488fec41ff3705394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreField: {fileID: 1233989378}
 --- !u!1 &1131578586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,8 +1179,8 @@ GameObject:
   - component: {fileID: 1233989381}
   - component: {fileID: 1233989380}
   m_Layer: 5
-  m_Name: LeftScoreText
-  m_TagString: Untagged
+  m_Name: RightScoreText
+  m_TagString: RightScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1170,7 +1198,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1618655452}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1305,8 +1333,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1233989379}
   - {fileID: 87777002}
+  - {fileID: 1233989379}
   - {fileID: 968478890}
   m_Father: {fileID: 0}
   m_RootOrder: 5
