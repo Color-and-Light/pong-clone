@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -47,11 +48,11 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col) 
     {
         if (col.gameObject.GetComponent<IPuck>() != null)
         {
-            rb.velocity = Vector2.zero;
+            
         }
     }
 }

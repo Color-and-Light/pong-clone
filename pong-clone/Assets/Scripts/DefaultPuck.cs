@@ -17,35 +17,29 @@ public class DefaultPuck : MonoBehaviour, IPuck
    public void Punch()
    {
       float direction = Random.Range(0f, 1f);
-      if (direction >= 0.5)
+      if (direction >= 0.5 || GameManager.instance.leftScore > GameManager.instance.rightScore)
       {
-         rb.velocity = GameManager.instance.puckSpeed;
+         rb.velocity = GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
       }
       else
       {
-         rb.velocity = new Vector2(-1, 1) * GameManager.instance.puckSpeed;
+         rb.velocity = new Vector2(-1, 1) * GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
       }
-   }
-   private void OnTriggerEnter2D(Collider2D col)
-   {
-      GameManager.instance.scoreCallbacks.Invoke(col.gameObject);
-      Destroy(this.gameObject);
    }
 
    private void OnCollisionEnter2D(Collision2D col)
    {
-      if (col.gameObject.GetComponent<PlayerController>())
+      if(col.gameObject.GetComponent<IWall>() != null || col.gameObject.GetComponent<PlayerController>() != null)
       {
-         Vector2 normalized = Vector2.Reflect(rb.velocity, col.contacts[0].normal).normalized;
-         rb.velocity = normalized * GameManager.instance.puckSpeed;
+         GameManager.instance.bounceCallbacks.Invoke();
+         //rb.velocity = Vector2.Reflect(rb.velocity, col.contacts[0].normal).normalized * GameManager.instance.puckDirection;
       }
-      else
+      else if(col.gameObject.GetComponent<ScoreBoxText>())
       {
-         Vector2 cache = Vector2.Reflect(rb.velocity, col.contacts[0].normal).normalized;
-         if (Vector2.Angle(cache, ) <= 20)
-         {
-            
-         }
+         GameManager.instance.scoreCallbacks.Invoke(col.gameObject);
+         Destroy(this.gameObject);
       }
    }
+
+   
 }

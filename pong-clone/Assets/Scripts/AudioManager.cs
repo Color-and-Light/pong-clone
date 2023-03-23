@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-   private AudioClip scoreAudio;
-   private AudioClip bounceWallAudio;
-   private AudioClip bouncePaddleAudio;
+   [SerializeField] AudioClip scoreAudio;
+   [SerializeField] AudioClip bounceAudio;
+   private AudioSource audioSource;
    public static AudioManager instance;
 
    private void Awake()
@@ -15,14 +17,20 @@ public class AudioManager : MonoBehaviour
       if (instance == null)
       {
          instance = this;
+         audioSource = instance.AddComponent<AudioSource>();
       }
-      else Destroy(this);
+      else Destroy(this); 
       
       DontDestroyOnLoad(this);
    }
 
    public void Score()
    {
-      //play score sound
+      instance.audioSource.PlayOneShot(scoreAudio);
+   }
+
+   public void Bounce()
+   {
+      instance.audioSource.PlayOneShot(bounceAudio);
    }
 }

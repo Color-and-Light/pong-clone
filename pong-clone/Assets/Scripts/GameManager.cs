@@ -11,13 +11,17 @@ public class GameManager : MonoBehaviour
    public static GameManager instance = null;
    public delegate void ScoreCallback(GameObject sender);
    public ScoreCallback scoreCallbacks;
+
+   public delegate void BounceCallback();
+   public BounceCallback bounceCallbacks;
    public GameObject puck;
    private IPuck puckBase;
    public int leftScore { get; private set; }
    public int rightScore { get; private set; }
    private bool hasStarted;
    private float roundTimer = 1000f;
-   public Vector2 puckSpeed;
+   public Vector2 puckDirection;
+   public float puckSpeedScalar;
    private GameObject leftScoreText;
    private GameObject rightScoreText;
 
@@ -38,9 +42,8 @@ public class GameManager : MonoBehaviour
       scoreCallbacks += OnScore;
       scoreCallbacks += OnScoreAudio;
       scoreCallbacks += OnRoundReset;
-     // systemCallbacks += OnBounceWall();
-    // systemCallbacks += OnBouncePaddle();
-    
+
+      bounceCallbacks += OnBounce;
      void OnScore(GameObject sender)
      {
         if(sender.CompareTag("LeftScoreBox"))
@@ -68,17 +71,12 @@ public class GameManager : MonoBehaviour
         StartNewRound();
      }
 
-     //SystemCallbacks OnBounceWall()
-    //{
-    //   throw new NotImplementedException();
-    //}
-
-    //SystemCallbacks OnBouncePaddle()
-    //{
-    //   throw new NotImplementedException();
-    //}
-      
-      #endregion
+     void OnBounce()
+     {
+        AudioManager.instance.Bounce();
+     }
+     
+     #endregion
       
    }
    void StartNewRound()
