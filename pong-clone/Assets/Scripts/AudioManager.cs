@@ -33,4 +33,14 @@ public class AudioManager : MonoBehaviour
    {
       instance.audioSource.PlayOneShot(bounceAudio);
    }
+
+   public void Win()
+   {
+      
+   }
+
+   public void ButtonHover()
+   {
+      instance.audioSource.PlayOneShot(bounceAudio);
+   }
 }

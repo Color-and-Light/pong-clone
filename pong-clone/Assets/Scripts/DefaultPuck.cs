@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 public class DefaultPuck : MonoBehaviour, IPuck
 {
+   [SerializeField, Range(0, 5)] private float bounceScalar; 
    private Rigidbody2D rb;
  
    public void Init()
@@ -32,7 +33,7 @@ public class DefaultPuck : MonoBehaviour, IPuck
       if(col.gameObject.GetComponent<IWall>() != null || col.gameObject.GetComponent<PlayerController>() != null)
       {
          GameManager.instance.bounceCallbacks.Invoke();
-         //rb.velocity = Vector2.Reflect(rb.velocity, col.contacts[0].normal).normalized * GameManager.instance.puckDirection;
+         rb.velocity = new Vector2(rb.velocity.x * bounceScalar, rb.velocity.y); 
       }
       else if(col.gameObject.GetComponent<ScoreBoxText>())
       {
