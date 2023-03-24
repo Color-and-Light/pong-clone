@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
         map.LeftPaddle.Pause.started += OnPause;
         map.Enable();
+        Cursor.visible = false;
     }
 
     private void OnMove(InputAction.CallbackContext obj)

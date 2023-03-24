@@ -7,8 +7,10 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-   [SerializeField] AudioClip scoreAudio;
-   [SerializeField] AudioClip bounceAudio;
+   [SerializeField] private AudioClip scoreAudio;
+   [SerializeField] private AudioClip bounceAudio;
+   [SerializeField] private AudioClip winAudio;
+   
    private AudioSource audioSource;
    public static AudioManager instance;
 
@@ -36,7 +38,7 @@ public class AudioManager : MonoBehaviour
 
    public void Win()
    {
-      
+      instance.audioSource.PlayOneShot(winAudio);
    }
 
    public void ButtonHover()

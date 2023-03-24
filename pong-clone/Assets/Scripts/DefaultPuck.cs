@@ -17,8 +17,17 @@ public class DefaultPuck : MonoBehaviour, IPuck
 
    public void Punch()
    {
+      if (GameManager.instance.leftScore > GameManager.instance.rightScore)
+      {
+         rb.velocity = new Vector2(-1, 1) * GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
+      }
+      else if (GameManager.instance.rightScore > GameManager.instance.leftScore)
+      {
+         rb.velocity = GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
+         return;
+      }
       float direction = Random.Range(0f, 1f);
-      if (direction >= 0.5 || GameManager.instance.leftScore > GameManager.instance.rightScore)
+      if (direction >= 0.5)
       {
          rb.velocity = GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
       }

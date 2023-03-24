@@ -20,8 +20,9 @@ public class GameManager : MonoBehaviour
    public int leftScore { get; private set; }
    public int rightScore { get; private set; }
    private bool hasStarted, resetScore;
-   private float roundTimer = 500f;
+   private float roundTimer = 1500f;
    public bool isPaused;
+   private bool canPause = true;
    public Vector2 puckDirection;
    public float puckSpeedScalar;
    private GameObject leftScoreText, rightScoreText;
@@ -106,6 +107,8 @@ public class GameManager : MonoBehaviour
 
    void WinGame()
    {
+      canPause = false;
+      Cursor.visible = true;
       winCanvas.SetActive(true);
       uiCanvas.SetActive(false);
       var text = winCanvas.GetComponentInChildren<TMP_Text>();
@@ -126,17 +129,19 @@ public class GameManager : MonoBehaviour
       rightScore = 0;
       leftScoreText.GetComponent<TMP_Text>().text = leftScore.ToString();
       rightScoreText.GetComponent<TMP_Text>().text = rightScore.ToString();
+      canPause = true;
       StartNewRound();
    }
 
    public void OnGamePause()
    {
-      if (SceneManager.GetActiveScene().buildIndex == (int)Level.MainGame && !isPaused)
+      if (SceneManager.GetActiveScene().buildIndex == (int)Level.MainGame && !isPaused && canPause)
       {
          isPaused = true;
          pauseCanvas.SetActive(!pauseCanvas.activeSelf);
          Time.timeScale = pauseCanvas.activeSelf ? 0 : 1;
          float pauseTime = 1f;
+         Cursor.visible = !Cursor.visible;
          StartCoroutine(PauseTime(pauseTime));
 
       }

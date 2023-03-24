@@ -24,12 +24,15 @@ public class MenuHandler : MonoBehaviour
    {
       GameManager.instance.isPaused = false;
       GameManager.instance.OnGamePause();
+      Cursor.visible = false;
    }
 
    public void Quit()
    {
       System.Diagnostics.Process.GetCurrentProcess().Kill(); //unity method for closing applications (Application.Quit), does not work for some reason.
    }
+
+   public void ToggleFullscreen(bool toggle) => Screen.fullScreen = toggle;
 
    private void CleanupSingletons()
    {
