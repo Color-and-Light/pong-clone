@@ -9,18 +9,21 @@ public class MenuHandler : MonoBehaviour
    {
       SceneManager.LoadScene((int)Level.MainGame);
    }
-
    public void MainMenu()
    {
-      SceneManager.LoadScene((int)Level.MainMenu);
       CleanupSingletons();
-
+      SceneManager.LoadScene((int)Level.MainMenu);
    }
 
-   public void RestartGame()
+   public void Restart()
    {
-      CleanupSingletons();
-      SceneManager.LoadScene((int)Level.MainGame);
+      GameManager.instance.NewGame();
+   }
+
+   public void Resume()
+   {
+      GameManager.instance.isPaused = false;
+      GameManager.instance.OnGamePause();
    }
 
    public void Quit()
@@ -30,8 +33,8 @@ public class MenuHandler : MonoBehaviour
 
    private void CleanupSingletons()
    {
-      Destroy(GameManager.instance);
-      Destroy(AudioManager.instance);
+      Destroy(GameManager.instance.gameObject);
+      Destroy(AudioManager.instance.gameObject);
    }
    
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
             map.RightPaddle.Move.canceled += OnMoveCancel;
         }
 
+        map.LeftPaddle.Pause.started += OnPause;
         map.Enable();
     }
 
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
     }
+
+    private void OnPause(InputAction.CallbackContext context) => GameManager.instance.OnGamePause();
 
     private void OnCollisionEnter2D(Collision2D col) 
     {

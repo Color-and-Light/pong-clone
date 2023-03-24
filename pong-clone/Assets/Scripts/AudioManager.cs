@@ -24,12 +24,12 @@ public class AudioManager : MonoBehaviour
       DontDestroyOnLoad(this);
    }
 
-   public void Score()
+   public void PlayScoreSound()
    {
       instance.audioSource.PlayOneShot(scoreAudio);
    }
 
-   public void Bounce()
+   public void PlayBounceSound()
    {
       instance.audioSource.PlayOneShot(bounceAudio);
    }

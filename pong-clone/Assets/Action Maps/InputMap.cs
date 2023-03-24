@@ -35,6 +35,15 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""b14194fa-6f77-4dd9-96f3-deecd9df8969"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,17 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4df4014c-fd13-4d0a-a17f-b6fefbbbe04d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -129,6 +149,7 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
         // LeftPaddle
         m_LeftPaddle = asset.FindActionMap("LeftPaddle", throwIfNotFound: true);
         m_LeftPaddle_Move = m_LeftPaddle.FindAction("Move", throwIfNotFound: true);
+        m_LeftPaddle_Pause = m_LeftPaddle.FindAction("Pause", throwIfNotFound: true);
         // RightPaddle
         m_RightPaddle = asset.FindActionMap("RightPaddle", throwIfNotFound: true);
         m_RightPaddle_Move = m_RightPaddle.FindAction("Move", throwIfNotFound: true);
@@ -192,11 +213,13 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_LeftPaddle;
     private ILeftPaddleActions m_LeftPaddleActionsCallbackInterface;
     private readonly InputAction m_LeftPaddle_Move;
+    private readonly InputAction m_LeftPaddle_Pause;
     public struct LeftPaddleActions
     {
         private @InputMap m_Wrapper;
         public LeftPaddleActions(@InputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_LeftPaddle_Move;
+        public InputAction @Pause => m_Wrapper.m_LeftPaddle_Pause;
         public InputActionMap Get() { return m_Wrapper.m_LeftPaddle; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -209,6 +232,9 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_LeftPaddleActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_LeftPaddleActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_LeftPaddleActionsCallbackInterface.OnMove;
+                @Pause.started -= m_Wrapper.m_LeftPaddleActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_LeftPaddleActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_LeftPaddleActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_LeftPaddleActionsCallbackInterface = instance;
             if (instance != null)
@@ -216,6 +242,9 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -256,6 +285,7 @@ public partial class @InputMap : IInputActionCollection2, IDisposable
     public interface ILeftPaddleActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IRightPaddleActions
     {
