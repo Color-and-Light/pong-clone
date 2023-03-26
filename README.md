@@ -1,6 +1,6 @@
 # pong-clone
 
-Pong is a classic game released by Atari 1972. A ball or "puck" bounces across the screen between two paddles controlled by opposing players. The goal of the game is to bounce the ball past the opposing player into their score field for a point. First player to 11 points wins. 
+Pong is a classic game released by Atari in 1972. A ball or "puck" bounces across the screen between two paddles controlled by opposing players. The goal of the game is to bounce the ball past the opposing player into their score field for a point. First player to 11 points wins. 
 
 Getting Started
 
