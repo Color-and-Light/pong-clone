@@ -23,14 +23,15 @@ Features
     Scoreboard keeps track of each player's score
     Game ends when one player reaches 11 points
     
-![PongAnimation2](https://user-images.githubusercontent.com/91418047/227805444-723aba5c-44ad-4b73-95f2-c343f91298c4.gif)
-
+![PongAnimation4](https://user-images.githubusercontent.com/91418047/227807487-eb5bd4dd-b487-472d-95a7-5ddff5c9b742.gif)
+    
 Future Improvements
 
     Adding ball variations with unique effects
     Implementing different ball speeds and paddle sizes via game modes / difficulties
     Adding a single player mode with AI opponents
     
+
     
 
 Credits
