@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
       winCanvas.SetActive(true);
       uiCanvas.SetActive(false);
       var text = winCanvas.GetComponentInChildren<TMP_Text>();
-      if (leftScore >= 11)
+      if (rightScore >= 11)
       {
          text.text = "Player 1 Wins!";
       }
