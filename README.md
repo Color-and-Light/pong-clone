@@ -17,19 +17,19 @@ Controls
 
 Features
 
-    Two-player gameplay
-    Simple and intuitive controls
-    Ball speed increases after each successful hit
-    Scoreboard keeps track of each player's score
-    Game ends when one player reaches 11 points
+    -Two-player gameplay
+    -Simple and intuitive controls
+    -Ball speed increases after each successful hit
+    -Scoreboard keeps track of each player's score
+    -Game ends when one player reaches 11 points
     
 ![PongAnimation4](https://user-images.githubusercontent.com/91418047/227807487-eb5bd4dd-b487-472d-95a7-5ddff5c9b742.gif)
     
 Future Improvements
 
-    Adding ball variations with unique effects
-    Implementing different ball speeds and paddle sizes via game modes / difficulties
-    Adding a single player mode with AI opponents
+    -Adding ball variations with unique effects
+    -Implementing different ball speeds and paddle sizes via game modes / difficulties
+    -Adding a single player mode with AI opponents
     
 
     
