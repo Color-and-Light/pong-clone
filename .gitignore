@@ -5,6 +5,7 @@ pong-clone/[Ll]ogs/
 pong-clone/[Uu]ser[Ss]ettings/
 pong-clone/[Mm]emoryCaptures/
 pong-clone/[Aa]ssets/[Pp]lugins
+/[Aa]ssets/[Pp]lugins
 pong-clone!/[Aa]ssets/*/.meta
 
 # pong-clone/[Aa]ssets/AssetStoreTools*
