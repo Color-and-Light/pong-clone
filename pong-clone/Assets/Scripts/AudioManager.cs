@@ -13,13 +13,14 @@ public class AudioManager : MonoBehaviour
 
    private void Awake()
    {
-      if (Instance == null)
+      if (Instance != null)
       {
-         Instance = this;
-         _audioSource = Instance.AddComponent<AudioSource>();
+         Destroy(this);
       }
-      else Destroy(this); 
-      
+
+      Instance = this;
+      _audioSource = Instance.AddComponent<AudioSource>();
+
       DontDestroyOnLoad(this);
    }
 

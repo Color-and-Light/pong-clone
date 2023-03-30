@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
    public delegate void BounceCallback();
    public BounceCallback BounceCallbacks;
    public Vector2 puckDirection;
+   public readonly int MaxHorizontalSpeed = 45;
    [Range(0, 50)] public int MoveSpeed = 10;
 
    //props
@@ -34,12 +35,11 @@ public class GameManager : MonoBehaviour
 
    private void Awake()
    {
-      if (Instance == null)
+      if (Instance != null)
       {
-         Instance = this;
+         Destroy(this);
       }
-      else Destroy(this);
-      
+      Instance = this;
       DontDestroyOnLoad(this);
 
       _uiCanvas = Instantiate(_uiCanvasObject, Vector2.zero, Quaternion.identity); //initializing UI at runtime

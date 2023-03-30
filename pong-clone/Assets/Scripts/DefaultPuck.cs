@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 public class DefaultPuck : MonoBehaviour, IPuck
 {
-   [SerializeField, Range(0, 5)] private float _bounceScalar; 
+   [SerializeField, Range(0, 5)] private float _bounceScalar;
    private Rigidbody2D _rb;
  
    public void Init()
@@ -21,11 +21,11 @@ public class DefaultPuck : MonoBehaviour, IPuck
       
       if (GameManager.Instance.LeftScore > GameManager.Instance.RightScore)
       {
-         _rb.velocity = new Vector2(-1, 1) * _cachedDirection;
+         _rb.velocity = _cachedDirection;
       }
       else if (GameManager.Instance.RightScore > GameManager.Instance.LeftScore)
       {
-         _rb.velocity = _cachedDirection;
+         _rb.velocity = new Vector2(-1, 1) * _cachedDirection;
          return;
       }
       float _direction = Random.Range(0f, 1f);
@@ -44,7 +44,11 @@ public class DefaultPuck : MonoBehaviour, IPuck
       if(col.gameObject.GetComponent<IWall>() != null || col.gameObject.GetComponent<PlayerController>() != null)
       {
          GameManager.Instance.BounceCallbacks.Invoke();
-         _rb.velocity = new Vector2(_rb.velocity.x * _bounceScalar, _rb.velocity.y); 
+         _rb.velocity = new Vector2(_rb.velocity.x * _bounceScalar, _rb.velocity.y);
+         if (_rb.velocity.x > GameManager.Instance.MaxHorizontalSpeed)
+         {
+            _rb.velocity = new Vector2(GameManager.Instance.MaxHorizontalSpeed, _rb.velocity.y);
+         }
       }
       else if(col.gameObject.GetComponent<ScoreBoxText>())
       {
