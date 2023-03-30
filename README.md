@@ -2,7 +2,7 @@
 
 [Pong](https://en.wikipedia.org/wiki/Pong) is a classic game released by Atari in 1972. A ball or "puck" bounces across the screen between two paddles controlled by opposing players. The goal of the game is to bounce the ball past the opposing player into their score field for a point. First player to 11 points wins. 
 
- Getting Started
+ <b>Getting Started</b>
 
 Click the latest release 'Pong Clone' underneath ```Releases``` on the side panel of this [repository](https://github.com/Color-and-Light/pong-clone/releases/tag/1.0.0). From there download and extract the .zip and run the executable. Feel free to run this on a VM for security reasons. Alternatively, either download the repository and open the executable in the Builds folder, ```pong-clone/Builds/pong-clone.exe```, or clone the repository and import it as a Unity project. The latter will require an installation of the [Unity game engine.](https://unity.com/)
 
