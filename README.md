@@ -8,12 +8,12 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
 
 ![PongAnimation3](https://user-images.githubusercontent.com/91418047/227805375-21168eeb-3ca0-47c4-af3f-1a4a339dba46.gif)
 
-<b>Controls</b>
+## <b>Controls</b>
 
     -Player 1 [Left Paddle] uses the W and S keys to move their paddle
     -Player 2 [Right Paddle] uses the up and down arrow keys to move their paddle
 
-<b>Features</b>
+## <b>Features</b>
 
     -Two-player gameplay
     -Simple and intuitive controls
@@ -23,7 +23,7 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
     
 ![PongAnimation4](https://user-images.githubusercontent.com/91418047/227807487-eb5bd4dd-b487-472d-95a7-5ddff5c9b742.gif)
     
-<b>Future Improvements</b>
+## <b>Future Improvements</b>
 
     -Adding ball variations with unique effects
     -Implementing different ball speeds and paddle sizes via game modes / difficulties
@@ -32,6 +32,6 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
 
     
 
-<b>Credits</b>
+## <b>Credits</b>
 
 This game was created by me. If you have any questions or feedback, feel free to reach out to me at raymondjwallington@gmail.com. Thanks for playing! 
