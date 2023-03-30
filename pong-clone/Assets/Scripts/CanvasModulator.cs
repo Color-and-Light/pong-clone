@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class CanvasModulator : MonoBehaviour
 {
-    [SerializeField] private Canvas mainCanvas, readmeCanvas;
+    [SerializeField] private Canvas _mainCanvas, _readmeCanvas;
 
     public void Modulate()
     {
-        mainCanvas.enabled = !mainCanvas.isActiveAndEnabled;
-        readmeCanvas.enabled = !readmeCanvas.isActiveAndEnabled;
+        _mainCanvas.enabled = !_mainCanvas.isActiveAndEnabled;
+        _readmeCanvas.enabled = !_readmeCanvas.isActiveAndEnabled;
     }
 }

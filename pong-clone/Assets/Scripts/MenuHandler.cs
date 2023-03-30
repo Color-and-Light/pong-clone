@@ -13,14 +13,12 @@ public class MenuHandler : MonoBehaviour
    {
       GameManager.Instance.NewGame();
    }
-
    public void Resume()
    {
       GameManager.Instance.IsPaused = false;
       GameManager.Instance.OnGamePause();
       Cursor.visible = false;
    }
-
    public void Quit()
    {
       System.Diagnostics.Process.GetCurrentProcess().Kill(); //unity method for closing applications (Application.Quit), does not work for some reason.
