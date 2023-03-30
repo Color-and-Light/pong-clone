@@ -9,56 +9,56 @@ using Unity.Mathematics;
 
 public class GameManager : MonoBehaviour
 {
-   public static GameManager instance = null;
+   //global fields
+   public static GameManager Instance = null;
    public delegate void ScoreCallback(GameObject sender);
-   public ScoreCallback scoreCallbacks;
-
+   public ScoreCallback ScoreCallbacks;
    public delegate void BounceCallback();
-   public BounceCallback bounceCallbacks;
-   public GameObject puck;
-   private IPuck puckBase;
-   public int leftScore { get; private set; }
-   public int rightScore { get; private set; }
-   private bool hasStarted, resetScore;
-   private float roundTimer = 1500f;
-   public bool isPaused;
-   private bool canPause = true;
+   public BounceCallback BounceCallbacks;
    public Vector2 puckDirection;
-   public float puckSpeedScalar;
-   private GameObject leftScoreText, rightScoreText;
-   [SerializeField] private GameObject uiCanvasObject, winCanvasObject, pauseCanvasObject;
-   private GameObject uiCanvas, winCanvas, pauseCanvas;
+   [Range(0, 50)] public int MoveSpeed = 10;
 
-   [Range(0, 50)]
-   public int MoveSpeed = 10;
+   //props
+   [field:SerializeField] public float PuckSpeedScalar { get; private set; }
+   public int LeftScore { get; private set; }
+   public int RightScore { get; private set; }
+   public bool IsPaused { get; set; }
+   
+   //local fields
+   [SerializeField] private float _roundTimer = 1500f;
+   [SerializeField] private GameObject _uiCanvasObject, _winCanvasObject, _pauseCanvasObject, _puck;
+   private GameObject _uiCanvas, _winCanvas, _pauseCanvas, _leftScoreText, _rightScoreText;
+   private IPuck _puckBase;
+   private bool _hasStarted, _resetScore;
+   private bool _canPause = true;
+
    private void Awake()
    {
-      if (instance == null)
+      if (Instance == null)
       {
-         instance = this;
+         Instance = this;
       }
       else Destroy(this);
       
       DontDestroyOnLoad(this);
 
-      uiCanvas = Instantiate(uiCanvasObject, Vector2.zero, Quaternion.identity); //initializing UI at runtime
-      winCanvas = Instantiate(winCanvasObject, Vector2.zero, Quaternion.identity);
-      pauseCanvas = Instantiate(pauseCanvasObject, Vector2.zero, Quaternion.identity);
-      uiCanvas.SetActive(false);
-      winCanvas.SetActive(false);
-      pauseCanvas.SetActive(false);
-      rightScoreText = uiCanvas.transform.GetChild(0).gameObject;
-      leftScoreText = uiCanvas.transform.GetChild(1).gameObject;
+      _uiCanvas = Instantiate(_uiCanvasObject, Vector2.zero, Quaternion.identity); //initializing UI at runtime
+      _winCanvas = Instantiate(_winCanvasObject, Vector2.zero, Quaternion.identity);
+      _pauseCanvas = Instantiate(_pauseCanvasObject, Vector2.zero, Quaternion.identity);
+      _uiCanvas.SetActive(false);
+      _winCanvas.SetActive(false);
+      _pauseCanvas.SetActive(false);
+      _rightScoreText = _uiCanvas.transform.GetChild(0).gameObject;
+      _leftScoreText = _uiCanvas.transform.GetChild(1).gameObject;
       
-      DontDestroyOnLoad(uiCanvas);
-      DontDestroyOnLoad(winCanvas);
-      DontDestroyOnLoad(pauseCanvas);
+      DontDestroyOnLoad(_uiCanvas);
+      DontDestroyOnLoad(_winCanvas);
+      DontDestroyOnLoad(_pauseCanvas);
 
-      scoreCallbacks += OnScore;
-      scoreCallbacks += OnScoreAudio;
-      scoreCallbacks += OnRoundReset;
-
-      bounceCallbacks += OnBounce;
+      ScoreCallbacks += OnScore;
+      ScoreCallbacks += OnScoreAudio;
+      ScoreCallbacks += OnRoundReset;
+      BounceCallbacks += OnBounce;
    }
    
    #region Delegate Callbacks
@@ -66,53 +66,49 @@ public class GameManager : MonoBehaviour
    {
       if(sender.CompareTag("LeftScoreBox")) //not a fan of string comparisons, but this is the only time it's used.
       {
-         leftScore++;
-         sender.GetComponent<ScoreBoxText>().scoreField.GetComponent<TMP_Text>().text = leftScore.ToString();
-
+         LeftScore++;
+         sender.GetComponent<ScoreBoxText>().scoreField.GetComponent<TMP_Text>().text = LeftScore.ToString();
       }
       else
       {
-         rightScore++;
-         sender.GetComponent<ScoreBoxText>().scoreField.GetComponent<TMP_Text>().text = rightScore.ToString();
-
+         RightScore++;
+         sender.GetComponent<ScoreBoxText>().scoreField.GetComponent<TMP_Text>().text = RightScore.ToString();
       }
    }
      
-   void OnScoreAudio(GameObject sender) => AudioManager.instance.PlayScoreSound(); 
+   void OnScoreAudio(GameObject sender) => AudioManager.Instance.PlayScoreSound(); 
    
    void OnRoundReset(GameObject sender)
    {
-      if(leftScore < 11 && rightScore < 11) { StartNewRound();}
+      if(LeftScore < 11 && RightScore < 11) { StartNewRound();}
       else
       {
          WinGame();
       }
    }
-   void OnBounce()
-   {
-      AudioManager.instance.PlayBounceSound();
-   }
+
+   void OnBounce() => AudioManager.Instance.PlayBounceSound();
 
    #endregion
    void StartNewRound()
    {
-      winCanvas.SetActive(false); //redundancy checks
-      uiCanvas.SetActive(true);
-      GameObject puckHandler = Instantiate(puck, Vector2.zero, Quaternion.identity);
-      hasStarted = true;
-      puckBase = puckHandler.GetComponent<IPuck>();
-      puckBase.Init();
-      puckBase.Punch();
+      _winCanvas.SetActive(false); //redundancy checks
+      _uiCanvas.SetActive(true);
+      GameObject _puckHandler = Instantiate(_puck, Vector2.zero, Quaternion.identity);
+      _hasStarted = true;
+      _puckBase = _puckHandler.GetComponent<IPuck>();
+      _puckBase.Init();
+      _puckBase.Punch();
    }
 
    void WinGame()
    {
-      canPause = false;
+      _canPause = false;
       Cursor.visible = true;
-      winCanvas.SetActive(true);
-      uiCanvas.SetActive(false);
-      var text = winCanvas.GetComponentInChildren<TMP_Text>();
-      if (rightScore >= 11)
+      _winCanvas.SetActive(true);
+      _uiCanvas.SetActive(false);
+      var text = _winCanvas.GetComponentInChildren<TMP_Text>();
+      if (RightScore >= 11)
       {
          text.text = "Player 1 Wins!";
       }
@@ -120,49 +116,48 @@ public class GameManager : MonoBehaviour
       {
          text.text = "Player 2 Wins!";
       }
-      AudioManager.instance.Win();
+      AudioManager.Instance.Win();
    }
 
    public void NewGame()
    {
-      leftScore = 0;
-      rightScore = 0;
-      leftScoreText.GetComponent<TMP_Text>().text = leftScore.ToString();
-      rightScoreText.GetComponent<TMP_Text>().text = rightScore.ToString();
-      canPause = true;
+      LeftScore = 0;
+      RightScore = 0;
+      _leftScoreText.GetComponent<TMP_Text>().text = LeftScore.ToString();
+      _rightScoreText.GetComponent<TMP_Text>().text = RightScore.ToString();
+      _canPause = true;
+      Cursor.visible = false;
       StartNewRound();
    }
 
    public void OnGamePause()
    {
-      if (SceneManager.GetActiveScene().buildIndex == (int)Level.MainGame && !isPaused && canPause)
+      if (SceneManager.GetActiveScene().buildIndex == (int)Level.MainGame && !IsPaused && _canPause)
       {
-         isPaused = true;
-         pauseCanvas.SetActive(!pauseCanvas.activeSelf);
-         Time.timeScale = pauseCanvas.activeSelf ? 0 : 1;
+         IsPaused = true;
+         _pauseCanvas.SetActive(!_pauseCanvas.activeSelf);
+         Time.timeScale = _pauseCanvas.activeSelf ? 0 : 1;
          float pauseTime = 1f;
          Cursor.visible = !Cursor.visible;
          StartCoroutine(PauseTime(pauseTime));
-
       }
    }
 
    IEnumerator PauseTime(float pauseTime)
    {
       yield return new WaitForSeconds(pauseTime);
-      isPaused = false;
+      IsPaused = false;
    }
 
    private void Update()
    {
       if(SceneManager.GetActiveScene().buildIndex == (int)Level.MainGame)
       {
-         if (roundTimer > 0 && !hasStarted)
+         if (_roundTimer > 0 && !_hasStarted)
          {
-            roundTimer -= Time.time;
+            _roundTimer -= Time.time;
          }
-
-         else if (!hasStarted)
+         else if (!_hasStarted)
          {
             StartNewRound();
          }

@@ -875,9 +875,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89862fb0040e6d546891505371bbc05c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreAudio: {fileID: 8300000, guid: d0daf8cc4665d2d469920d0367bd3acf, type: 3}
-  bounceAudio: {fileID: 8300000, guid: a085598110c79a04590d22b7ff995015, type: 3}
-  winAudio: {fileID: 8300000, guid: 42892a71b6b235b438846522d2bb368e, type: 3}
+  _scoreAudio: {fileID: 8300000, guid: d0daf8cc4665d2d469920d0367bd3acf, type: 3}
+  _bounceAudio: {fileID: 8300000, guid: a085598110c79a04590d22b7ff995015, type: 3}
+  _winAudio: {fileID: 8300000, guid: 42892a71b6b235b438846522d2bb368e, type: 3}
 --- !u!82 &663692610
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1461,14 +1461,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62439a955f85cf94eaf8b37977b68210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puck: {fileID: 8666958596064797095, guid: 304e8f1945d362c41a1e23327b40184c, type: 3}
-  isPaused: 0
   puckDirection: {x: 10, y: 3}
-  puckSpeedScalar: 2
-  uiCanvasObject: {fileID: 4893099566243548024, guid: e4201ab00441ce447ba82f8e318b5888, type: 3}
-  winCanvasObject: {fileID: 3285082841601978254, guid: 3b92c82d1a900a94498c4e0103fa7545, type: 3}
-  pauseCanvasObject: {fileID: 4852471124275351532, guid: a37f0caa90dea6042b62004a604b6539, type: 3}
   MoveSpeed: 10
+  <PuckSpeedScalar>k__BackingField: 2
+  _roundTimer: 1500
+  _uiCanvasObject: {fileID: 4893099566243548024, guid: e4201ab00441ce447ba82f8e318b5888, type: 3}
+  _winCanvasObject: {fileID: 3285082841601978254, guid: 3b92c82d1a900a94498c4e0103fa7545, type: 3}
+  _pauseCanvasObject: {fileID: 4852471124275351532, guid: a37f0caa90dea6042b62004a604b6539, type: 3}
+  _puck: {fileID: 8666958596064797095, guid: 304e8f1945d362c41a1e23327b40184c, type: 3}
 --- !u!1 &1338710992
 GameObject:
   m_ObjectHideFlags: 0

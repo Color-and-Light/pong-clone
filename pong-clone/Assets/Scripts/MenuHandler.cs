@@ -9,21 +9,15 @@ public class MenuHandler : MonoBehaviour
    {
       SceneManager.LoadScene((int)Level.MainGame);
    }
-   public void MainMenu()
-   {
-      CleanupSingletons();
-      SceneManager.LoadScene((int)Level.MainMenu);
-   }
-
    public void Restart()
    {
-      GameManager.instance.NewGame();
+      GameManager.Instance.NewGame();
    }
 
    public void Resume()
    {
-      GameManager.instance.isPaused = false;
-      GameManager.instance.OnGamePause();
+      GameManager.Instance.IsPaused = false;
+      GameManager.Instance.OnGamePause();
       Cursor.visible = false;
    }
 
@@ -31,13 +25,5 @@ public class MenuHandler : MonoBehaviour
    {
       System.Diagnostics.Process.GetCurrentProcess().Kill(); //unity method for closing applications (Application.Quit), does not work for some reason.
    }
-
    public void ToggleFullscreen(bool toggle) => Screen.fullScreen = toggle;
-
-   private void CleanupSingletons()
-   {
-      Destroy(GameManager.instance.gameObject);
-      Destroy(AudioManager.instance.gameObject);
-   }
-   
 }

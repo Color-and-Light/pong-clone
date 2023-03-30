@@ -9,55 +9,43 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 
 {
-    [SerializeField] private playerDirection direction;
-    private InputMap map;
-    private Rigidbody2D rb;
-    private Vector2 moveVector;
-    private enum playerDirection
+    [SerializeField] private PlayerDirection _direction;
+    private InputMap _map;
+    private Rigidbody2D _rb;
+    private Vector2 _moveVector;
+    private enum PlayerDirection
     {
-        left,
+        Left,
         right
     }
     private void Awake()
     {
-        moveVector = new Vector2(0, GameManager.instance.MoveSpeed);
-        map = new InputMap();
+        _moveVector = new Vector2(0, GameManager.Instance.MoveSpeed);
+        _map = new InputMap();
         
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
         
-        if (direction == playerDirection.left)
+        if (_direction == PlayerDirection.Left)
         {
-            map.LeftPaddle.Move.started += OnMove;
-            map.LeftPaddle.Move.canceled += OnMoveCancel;
+            _map.LeftPaddle.Move.started += OnMove;
+            _map.LeftPaddle.Move.canceled += OnMoveCancel;
         }
-
         else
         {
-            map.RightPaddle.Move.started += OnMove;
-            map.RightPaddle.Move.canceled += OnMoveCancel;
+            _map.RightPaddle.Move.started += OnMove;
+            _map.RightPaddle.Move.canceled += OnMoveCancel;
         }
 
-        map.LeftPaddle.Pause.started += OnPause;
-        map.Enable();
+        _map.LeftPaddle.Pause.started += OnPause;
+        _map.Enable();
         Cursor.visible = false;
     }
 
     private void OnMove(InputAction.CallbackContext obj)
     {
-        rb.velocity = moveVector * (int)obj.ReadValue<float>();
+        _rb.velocity = _moveVector * (int)obj.ReadValue<float>();
     }
-    private void OnMoveCancel(InputAction.CallbackContext obj)
-    {
-        rb.velocity = Vector2.zero;
-    }
+    private void OnMoveCancel(InputAction.CallbackContext obj) => _rb.velocity = Vector2.zero;
 
-    private void OnPause(InputAction.CallbackContext context) => GameManager.instance.OnGamePause();
-
-    private void OnCollisionEnter2D(Collision2D col) 
-    {
-        if (col.gameObject.GetComponent<IPuck>() != null)
-        {
-            
-        }
-    }
+    private void OnPause(InputAction.CallbackContext context) => GameManager.Instance.OnGamePause();
 }

@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f7be826efae3f41a71db7f9ba77369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
+  _direction: 1
 --- !u!61 &255078256
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8f7be826efae3f41a71db7f9ba77369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  _direction: 0
 --- !u!50 &1010150741
 Rigidbody2D:
   serializedVersion: 4

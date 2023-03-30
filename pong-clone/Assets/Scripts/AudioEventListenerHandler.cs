@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class AudioEventListenerHandler : MonoBehaviour
 {
-    public void OnButtonHover() => AudioManager.instance.ButtonHover();
+    public void OnButtonHover() => AudioManager.Instance.ButtonHover();
 }

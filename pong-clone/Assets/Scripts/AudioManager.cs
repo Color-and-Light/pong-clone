@@ -7,42 +7,24 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-   [SerializeField] private AudioClip scoreAudio;
-   [SerializeField] private AudioClip bounceAudio;
-   [SerializeField] private AudioClip winAudio;
-   
-   private AudioSource audioSource;
-   public static AudioManager instance;
+   [SerializeField] private AudioClip _scoreAudio, _bounceAudio, _winAudio;
+   private AudioSource _audioSource;
+   public static AudioManager Instance;
 
    private void Awake()
    {
-      if (instance == null)
+      if (Instance == null)
       {
-         instance = this;
-         audioSource = instance.AddComponent<AudioSource>();
+         Instance = this;
+         _audioSource = Instance.AddComponent<AudioSource>();
       }
       else Destroy(this); 
       
       DontDestroyOnLoad(this);
    }
 
-   public void PlayScoreSound()
-   {
-      instance.audioSource.PlayOneShot(scoreAudio);
-   }
-
-   public void PlayBounceSound()
-   {
-      instance.audioSource.PlayOneShot(bounceAudio);
-   }
-
-   public void Win()
-   {
-      instance.audioSource.PlayOneShot(winAudio);
-   }
-
-   public void ButtonHover()
-   {
-      instance.audioSource.PlayOneShot(bounceAudio);
-   }
+   public void PlayScoreSound() => Instance._audioSource.PlayOneShot(_scoreAudio);
+   public void PlayBounceSound() => Instance._audioSource.PlayOneShot(_bounceAudio);
+   public void Win() => Instance._audioSource.PlayOneShot(_winAudio);
+   public void ButtonHover() => Instance._audioSource.PlayOneShot(_bounceAudio);
 }

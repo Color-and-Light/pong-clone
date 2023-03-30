@@ -7,33 +7,35 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 public class DefaultPuck : MonoBehaviour, IPuck
 {
-   [SerializeField, Range(0, 5)] private float bounceScalar; 
-   private Rigidbody2D rb;
+   [SerializeField, Range(0, 5)] private float _bounceScalar; 
+   private Rigidbody2D _rb;
  
    public void Init()
    {
-      rb = GetComponent<Rigidbody2D>();
+      _rb = GetComponent<Rigidbody2D>();
    }
 
    public void Punch()
    {
-      if (GameManager.instance.leftScore > GameManager.instance.rightScore)
+      var _cachedDirection = GameManager.Instance.puckDirection * GameManager.Instance.PuckSpeedScalar;
+      
+      if (GameManager.Instance.LeftScore > GameManager.Instance.RightScore)
       {
-         rb.velocity = new Vector2(-1, 1) * GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
+         _rb.velocity = new Vector2(-1, 1) * _cachedDirection;
       }
-      else if (GameManager.instance.rightScore > GameManager.instance.leftScore)
+      else if (GameManager.Instance.RightScore > GameManager.Instance.LeftScore)
       {
-         rb.velocity = GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
+         _rb.velocity = _cachedDirection;
          return;
       }
-      float direction = Random.Range(0f, 1f);
-      if (direction >= 0.5)
+      float _direction = Random.Range(0f, 1f);
+      if (_direction >= 0.5)
       {
-         rb.velocity = GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
+         _rb.velocity = _cachedDirection;
       }
       else
       {
-         rb.velocity = new Vector2(-1, 1) * GameManager.instance.puckDirection * GameManager.instance.puckSpeedScalar;
+         _rb.velocity = new Vector2(-1, 1) * GameManager.Instance.puckDirection * GameManager.Instance.PuckSpeedScalar;
       }
    }
 
@@ -41,12 +43,12 @@ public class DefaultPuck : MonoBehaviour, IPuck
    {
       if(col.gameObject.GetComponent<IWall>() != null || col.gameObject.GetComponent<PlayerController>() != null)
       {
-         GameManager.instance.bounceCallbacks.Invoke();
-         rb.velocity = new Vector2(rb.velocity.x * bounceScalar, rb.velocity.y); 
+         GameManager.Instance.BounceCallbacks.Invoke();
+         _rb.velocity = new Vector2(_rb.velocity.x * _bounceScalar, _rb.velocity.y); 
       }
       else if(col.gameObject.GetComponent<ScoreBoxText>())
       {
-         GameManager.instance.scoreCallbacks.Invoke(col.gameObject);
+         GameManager.Instance.ScoreCallbacks.Invoke(col.gameObject);
          Destroy(this.gameObject);
       }
    }

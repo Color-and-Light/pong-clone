@@ -8,16 +8,9 @@ public class PuckContactHandler : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("RightScoreBox")) //string comparison is terrible, but only used twice
+        if (col.CompareTag("RightScoreBox")) //alternatively, use an empty component and check GetComponent null
         {
-            GameManager.instance.scoreCallbacks.Invoke(col.gameObject);
+            GameManager.Instance.ScoreCallbacks.Invoke(col.gameObject);
         }
     }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        throw new NotImplementedException();
-    }
-    
-    
 }
