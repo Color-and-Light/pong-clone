@@ -8,7 +8,7 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
 
 ---
 
-![PongAnimation3](https://user-images.githubusercontent.com/91418047/227805375-21168eeb-3ca0-47c4-af3f-1a4a339dba46.gif)
+![PongAnimation1](https://user-images.githubusercontent.com/91418047/229227719-a1206479-8707-455a-9e34-4e99aa802f52.gif)
 
 ---
 
@@ -27,7 +27,7 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
     
 ---
     
-![PongAnimation4](https://user-images.githubusercontent.com/91418047/227807487-eb5bd4dd-b487-472d-95a7-5ddff5c9b742.gif)
+![PongAnimation2](https://user-images.githubusercontent.com/91418047/229227743-cb1238fe-f101-45e5-9188-4a1739017d20.gif)
 
 ---
     
