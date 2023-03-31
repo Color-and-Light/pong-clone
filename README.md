@@ -4,11 +4,11 @@
 
  ## <b>Getting Started</b>
 
-Click the latest release 'Pong Clone' underneath ```Releases``` on the side panel of this [repository](https://github.com/Color-and-Light/pong-clone/releases/tag/1.0.0). From there download and extract the .zip and run the executable. Feel free to run this on a VM for security reasons. Alternatively, either download the repository and open the executable in the Builds folder, ```pong-clone/Builds/pong-clone.exe```, or clone the repository and import it as a Unity project. The latter will require an installation of the [Unity game engine.](https://unity.com/)
+Click the latest release 'Pong Clone' underneath ```Releases``` on the side panel of this [repository](https://github.com/Color-and-Light/pong-clone/releases/tag/1.0.0). From there, download and extract the .zip and run the executable. Feel free to run this on a VM for security reasons. Alternatively, either download the repository and open the executable in the Builds folder, ```pong-clone/Builds/pong-clone.exe```, or clone the repository and import it as a Unity project. The latter will require an installation of the [Unity game engine.](https://unity.com/)
 
 ---
 
-![PongAnimation3](https://user-images.githubusercontent.com/91418047/227805375-21168eeb-3ca0-47c4-af3f-1a4a339dba46.gif)
+![PongAnimation1](https://user-images.githubusercontent.com/91418047/229227719-a1206479-8707-455a-9e34-4e99aa802f52.gif)
 
 ---
 
@@ -27,7 +27,7 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
     
 ---
     
-![PongAnimation4](https://user-images.githubusercontent.com/91418047/227807487-eb5bd4dd-b487-472d-95a7-5ddff5c9b742.gif)
+![PongAnimation2](https://user-images.githubusercontent.com/91418047/229227743-cb1238fe-f101-45e5-9188-4a1739017d20.gif)
 
 ---
     
