@@ -751,9 +751,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Just a straightforward pong clone. Left paddle moves with W and S, right
-    paddle with the arrow keys. First to 11 points wins. The puck gains 10% more
-    speed with each paddle bounce, for slightly more interesting gameplay. You can
-    also pause at any time with escape.
+    paddle with the arrow keys. First to 11 points wins.. You can also pause at any
+    time with escape.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
