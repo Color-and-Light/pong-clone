@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
    public bool IsPaused { get; set; }
    
    //local fields
-   [SerializeField] private float _roundTimer = 1500f;
+   [SerializeField] private float _roundTimer = 200f;
    [SerializeField] private GameObject _uiCanvasObject, _winCanvasObject, _pauseCanvasObject, _puck;
    private GameObject _uiCanvas, _winCanvas, _pauseCanvas, _leftScoreText, _rightScoreText;
    private IPuck _puckBase;
@@ -89,7 +89,10 @@ public class GameManager : MonoBehaviour
    void OnBounce() => AudioManager.Instance.PlayBounceSound();
 
    #endregion
-   void StartNewRound()
+
+   void StartNewRound() => StartCoroutine(KickoffTimer(1f));
+
+   IEnumerator KickoffTimer(float timeToWait)
    {
       _winCanvas.SetActive(false); //redundancy checks
       _uiCanvas.SetActive(true);
@@ -97,6 +100,7 @@ public class GameManager : MonoBehaviour
       _hasStarted = true;
       _puckBase = _puckHandler.GetComponent<IPuck>();
       _puckBase.Init();
+      yield return new WaitForSeconds(timeToWait);
       _puckBase.Punch();
    }
    void WinGame()
