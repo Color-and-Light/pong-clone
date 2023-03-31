@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.Mathematics;
@@ -16,11 +15,11 @@ public class GameManager : MonoBehaviour
    public delegate void BounceCallback();
    public BounceCallback BounceCallbacks;
    public Vector2 puckDirection;
-   public readonly int MaxHorizontalSpeed = 45;
-   [Range(0, 50)] public int MoveSpeed = 10;
+   public readonly int MaxHorizontalSpeed = 60;
+   [Range(0, 50)] public int MoveSpeed = 15;
 
    //props
-   [field:SerializeField] public float PuckSpeedScalar { get; private set; }
+   [field:SerializeField] public float PuckSpeed { get; private set; } 
    public int LeftScore { get; private set; }
    public int RightScore { get; private set; }
    public bool IsPaused { get; set; }
@@ -136,6 +135,7 @@ public class GameManager : MonoBehaviour
       {
          IsPaused = true;
          _pauseCanvas.SetActive(!_pauseCanvas.activeSelf);
+         _uiCanvas.SetActive(!_uiCanvas.activeSelf);
          Time.timeScale = _pauseCanvas.activeSelf ? 0 : 1;
          float pauseTime = 1f;
          Cursor.visible = !Cursor.visible;

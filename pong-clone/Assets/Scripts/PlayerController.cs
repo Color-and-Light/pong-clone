@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private enum PlayerDirection
     {
         Left,
-        right
+        Right
     }
     private void Awake()
     {
