@@ -9,15 +9,17 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 
 {
-    [SerializeField] private PlayerDirection _direction;
     private InputMap _map;
     private Rigidbody2D _rb;
     private Vector2 _moveVector;
-    private enum PlayerDirection
+
+    [field:SerializeField] public PlayerDirection Direction { get; private set; }
+    public enum PlayerDirection
     {
         Left,
         Right
     }
+
     private void Awake()
     {
         _moveVector = new Vector2(0, GameManager.Instance.MoveSpeed);
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
         
         _rb = GetComponent<Rigidbody2D>();
         
-        if (_direction == PlayerDirection.Left)
+        if (Direction == PlayerDirection.Left)
         {
             _map.LeftPaddle.Move.started += OnMove;
             _map.LeftPaddle.Move.canceled += OnMoveCancel;

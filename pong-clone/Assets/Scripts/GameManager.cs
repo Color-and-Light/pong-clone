@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
    public delegate void BounceCallback();
    public BounceCallback BounceCallbacks;
    public Vector2 puckDirection;
-   public readonly int MaxHorizontalSpeed = 60;
+   public readonly int MaxHorizontalSpeed = 55;
    [Range(0, 50)] public int MoveSpeed = 15;
 
    //props
@@ -99,7 +99,6 @@ public class GameManager : MonoBehaviour
       _puckBase.Init();
       _puckBase.Punch();
    }
-
    void WinGame()
    {
       _canPause = false;
