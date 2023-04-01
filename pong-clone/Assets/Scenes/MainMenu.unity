@@ -1461,10 +1461,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puckDirection: {x: 10, y: 3}
-  MoveSpeed: 25
+  MoveSpeed: 40
   <PuckSpeed>k__BackingField: 8
-  _roundTimer: 1000
-  _uiCanvasObject: {fileID: 4113188010125464892, guid: 4eb79b57edcab024ca6cf542f857a100, type: 3}
+  _uiCanvasObject: {fileID: 8899216512534345200, guid: 694484e4a47b974428463ff03f4eb99a, type: 3}
   _winCanvasObject: {fileID: 3285082841601978254, guid: 3b92c82d1a900a94498c4e0103fa7545, type: 3}
   _pauseCanvasObject: {fileID: 4852471124275351532, guid: a37f0caa90dea6042b62004a604b6539, type: 3}
   _puck: {fileID: 8666958596064797095, guid: 304e8f1945d362c41a1e23327b40184c, type: 3}

@@ -17,19 +17,19 @@ public class DefaultPuck : MonoBehaviour, IPuck
 
    public void Punch()
    {
-      int initialSlow = 2;
+      int initialSlow = 2; //slows ball on initial kickoff
       var _cachedDirection = GameManager.Instance.puckDirection * GameManager.Instance.PuckSpeed;
-      
-      if (GameManager.Instance.LeftScore > GameManager.Instance.RightScore)
+      if (GameManager.Instance.LastScore == GameManager.LastScored.Left)
       {
          _rb.velocity = _cachedDirection / initialSlow;
+         return;
       }
-      else if (GameManager.Instance.RightScore > GameManager.Instance.LeftScore)
+      if (GameManager.Instance.LastScore == GameManager.LastScored.Right)
       {
          _rb.velocity = (new Vector2(-1, 1) * _cachedDirection) / initialSlow;
          return;
       }
-      float _direction = Random.Range(0f, 1f);
+      float _direction = Random.Range(0f, 1f); //if neither player has scored yet, randomly pick a direction
       if (_direction >= 0.5)
       {
          _rb.velocity = _cachedDirection / initialSlow;
@@ -64,7 +64,7 @@ public class DefaultPuck : MonoBehaviour, IPuck
          {
             if (col.rigidbody.velocity.y < 0) //if paddle is moving downward
             {
-               _rb.velocity *= new Vector2(1.2f, 1.2f);
+               _rb.velocity *= new Vector2(-1.2f, -1.2f);
             }
             else //paddle is moving upward
             {

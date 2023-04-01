@@ -16,16 +16,17 @@ public class GameManager : MonoBehaviour
    public BounceCallback BounceCallbacks;
    public Vector2 puckDirection;
    public readonly int MaxHorizontalSpeed = 55;
+   public enum LastScored { None, Left, Right }
    [Range(0, 50)] public int MoveSpeed = 15;
 
    //props
    [field:SerializeField] public float PuckSpeed { get; private set; } 
-   public int LeftScore { get; private set; }
+   public int LeftScore { get; private set; } 
    public int RightScore { get; private set; }
    public bool IsPaused { get; set; }
-   
+   public LastScored LastScore { get; private set; } = LastScored.None;
+
    //local fields
-   [SerializeField] private float _roundTimer = 200f;
    [SerializeField] private GameObject _uiCanvasObject, _winCanvasObject, _pauseCanvasObject, _puck;
    private GameObject _uiCanvas, _winCanvas, _pauseCanvas, _leftScoreText, _rightScoreText;
    private IPuck _puckBase;
@@ -67,11 +68,13 @@ public class GameManager : MonoBehaviour
       {
          LeftScore++;
          sender.GetComponent<ScoreBoxText>().scoreField.GetComponent<TMP_Text>().text = LeftScore.ToString();
+         LastScore = LastScored.Left;
       }
       else
       {
          RightScore++;
          sender.GetComponent<ScoreBoxText>().scoreField.GetComponent<TMP_Text>().text = RightScore.ToString();
+         LastScore = LastScored.Right;
       }
    }
      
@@ -156,11 +159,7 @@ public class GameManager : MonoBehaviour
    {
       if(SceneManager.GetActiveScene().buildIndex == (int)Level.MainGame)
       {
-         if (_roundTimer > 0 && !_hasStarted)
-         {
-            _roundTimer -= Time.time;
-         }
-         else if (!_hasStarted)
+         if (!_hasStarted)
          {
             StartNewRound();
          }
