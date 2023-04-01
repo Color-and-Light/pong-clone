@@ -14,16 +14,16 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
 
 ## <b>Controls</b>
 
-    -Player 1 [Left Paddle] uses the W and S keys to move their paddle
-    -Player 2 [Right Paddle] uses the up and down arrow keys to move their paddle
++ Player 1 [Left Paddle] uses the W and S keys to move their paddle
++ Player 2 [Right Paddle] uses the up and down arrow keys to move their paddle
 
 ## <b>Features</b>
 
-    -Two-player gameplay
-    -Simple and intuitive controls
-    -Ball speed increases after each successful hit
-    -Scoreboard keeps track of each player's score
-    -Game ends when one player reaches 11 points
++ Two-player gameplay
++ Simple and intuitive controls
++ Ball speed increases after each successful hit
++ Scoreboard keeps track of each player's score
++ Game ends when one player reaches 11 points
     
 ---
     
@@ -33,9 +33,9 @@ Click the latest release 'Pong Clone' underneath ```Releases``` on the side pane
     
 ## <b>Future Improvements</b>
 
-    -Adding ball variations with unique effects
-    -Implementing different ball speeds and paddle sizes via game modes / difficulties
-    -Adding a single player mode with AI opponents
++ Adding ball variations with unique effects
++ Implementing different ball speeds and paddle sizes via game modes / difficulties
++ Adding a single player mode with AI opponents
     
 
     
